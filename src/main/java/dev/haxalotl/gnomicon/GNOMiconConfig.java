@@ -44,7 +44,7 @@ public class GNOMiconConfig {
 
     public void readConfig() {
         try {
-            configString = String.join(" ", Files.readAllLines(Path.of(FabricLoader.getInstance().getConfigDir() + "/gnomicon/gnomicon.json")));
+            configString = String.join(" ", Files.readAllLines(jsonPath));
         } catch (Exception e) {
             e.printStackTrace();
         }
