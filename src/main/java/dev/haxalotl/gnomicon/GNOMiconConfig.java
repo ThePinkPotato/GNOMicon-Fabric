@@ -35,7 +35,7 @@ public class GNOMiconConfig {
             }
 
             if (Files.notExists(iconPath)) {
-                Files.copy(FabricLoader.getInstance().getModContainer("gnomicon").orElseThrow().findPath("assets/gnomicon/icon.png").orElseThrow(), iconPath);
+                Files.copy(FabricLoader.getInstance().getModContainer("gnomicon").orElseThrow().findPath("assets/gnomicon/appicon.png").orElseThrow(), iconPath);
             }
 
         } catch (Exception e) {
