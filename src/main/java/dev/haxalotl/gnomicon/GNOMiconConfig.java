@@ -11,6 +11,7 @@ public class GNOMiconConfig {
     public static String configString;
     public static String windowName;
     public static String iconName;
+    public static Boolean generateDesktopEntry;
 
     private static final Path configPath = Path.of(FabricLoader.getInstance().getConfigDir() + "/gnomicon");
     private static final Path jsonPath = Path.of(configPath + "/gnomicon.json");
@@ -28,7 +29,8 @@ public class GNOMiconConfig {
                 Files.writeString(jsonPath,
                         "{\n" +
                                 "\"name\":\"Minecraft\",\n".indent(4) +
-                                "\"icon\":\"icon.png\"\n".indent(4) +
+                                "\"icon\":\"icon.png\",\n".indent(4) +
+                                "\"generateDesktopEntry\": true".indent(4) +
                                 "}"
                 );
             }
@@ -53,6 +55,7 @@ public class GNOMiconConfig {
         System.out.println(gnomiconConfig.get("name").getAsString());
         windowName = gnomiconConfig.get("name").getAsString();
         iconName = gnomiconConfig.get("icon").getAsString();
+        generateDesktopEntry = gnomiconConfig.get("generateDesktopEntry").getAsBoolean();
     }
 
 }

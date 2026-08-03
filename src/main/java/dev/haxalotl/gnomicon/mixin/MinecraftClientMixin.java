@@ -13,7 +13,9 @@ public class MinecraftClientMixin {
     private String gnomicon$getWindowTitle(String original) {
         GNOMiconConfig.createConfig();
         GNOMiconConfig.readConfig();
-        GNOMicon.createDesktopEntry();
+        if (GNOMiconConfig.generateDesktopEntry) {
+            GNOMicon.createDesktopEntry();
+        }
         return GNOMiconConfig.windowName != null ? GNOMiconConfig.windowName : original ;
     }
 }
