@@ -17,7 +17,6 @@ public class GNOMiconConfig {
     private static final Path jsonPath = Path.of(configPath + "/gnomicon.json");
     private static final Path iconPath = Path.of(configPath + "/icon.png");
 
-
     public static void createConfig() {
         try {
             if (Files.notExists(configPath)) {
@@ -52,7 +51,6 @@ public class GNOMiconConfig {
         }
 
         JsonObject gnomiconConfig = JsonParser.parseString(configString).getAsJsonObject();
-        System.out.println(gnomiconConfig.get("name").getAsString());
         windowName = gnomiconConfig.get("name").getAsString();
         iconName = gnomiconConfig.get("icon").getAsString();
         generateDesktopEntry = gnomiconConfig.get("generateDesktopEntry").getAsBoolean();
