@@ -8,16 +8,16 @@ import java.nio.file.Path;
 
 public class GNOMiconConfig {
 
-    public String configString;
-    public String windowName;
-    public String iconName;
+    public static String configString;
+    public static String windowName;
+    public static String iconName;
 
-    private Path configPath = Path.of(FabricLoader.getInstance().getConfigDir() + "/gnomicon");
-    private Path jsonPath = Path.of(configPath + "/gnomicon.json");
-    private Path iconPath = Path.of(configPath + "/icon.png");
+    private static final Path configPath = Path.of(FabricLoader.getInstance().getConfigDir() + "/gnomicon");
+    private static final Path jsonPath = Path.of(configPath + "/gnomicon.json");
+    private static final Path iconPath = Path.of(configPath + "/icon.png");
 
 
-    public void createConfig() {
+    public static void createConfig() {
         try {
             if (Files.notExists(configPath)) {
                 Files.createDirectory(configPath);
@@ -42,7 +42,7 @@ public class GNOMiconConfig {
         }
     }
 
-    public void readConfig() {
+    public static void readConfig() {
         try {
             configString = String.join(" ", Files.readAllLines(jsonPath));
         } catch (Exception e) {

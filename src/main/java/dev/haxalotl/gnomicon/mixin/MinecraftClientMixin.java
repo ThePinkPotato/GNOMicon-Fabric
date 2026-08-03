@@ -1,6 +1,8 @@
 package dev.haxalotl.gnomicon.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import dev.haxalotl.gnomicon.GNOMicon;
+import dev.haxalotl.gnomicon.GNOMiconConfig;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -9,6 +11,9 @@ import org.spongepowered.asm.mixin.injection.At;
 public class MinecraftClientMixin {
     @ModifyReturnValue(method="getWindowTitle", at = @At("RETURN"))
     private String gnomicon$getWindowTitle(String original) {
-        return System.getProperty("title") != null ? System.getProperty("title") : "Minecraft";
+        GNOMiconConfig.createConfig();
+        GNOMiconConfig.readConfig();
+        GNOMicon.createDesktopEntry();
+        return GNOMiconConfig.windowName != null ? GNOMiconConfig.windowName : original ;
     }
 }
