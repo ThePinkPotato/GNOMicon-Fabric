@@ -19,20 +19,23 @@ public class GNOMicon implements ModInitializer {
 			process.waitFor();
 			Path desktopPath = Path.of(System.getProperty("user.home") + "/.local/share/applications/" + "gnomicon-" + GNOMiconConfig.windowName + ".desktop");
 
-			if (getGnome.toUpperCase().contains("GNOME") && Files.notExists(desktopPath)) {
+			if (getGnome.toUpperCase().contains("GNOME")) {
 				System.out.println("GNOME version: " + getGnome);
 
-				Files.createFile(desktopPath);
-				Files.writeString(desktopPath,
-						"#!/usr/bin/env xdg-open\n\n" +
-								"[Desktop Entry]\n" +
-								"Type=Application\n" +
-								"Icon=" + FabricLoader.getInstance().getConfigDir().toString() + "/gnomicon/" + GNOMiconConfig.iconName + "\n" +
-								"StartupWMClass=" + GNOMiconConfig.windowName
-				);
-				LOGGER.info("Desktop file has been created");
-			} else {
-				LOGGER.warn("Your computer is probably using KDE");
+				if (Files.notExists(desktopPath)) {
+
+					Files.createFile(desktopPath);
+					Files.writeString(desktopPath,
+							"#!/usr/bin/env xdg-open\n\n" +
+									"[Desktop Entry]\n" +
+									"Type=Application\n" +
+									"Icon=" + FabricLoader.getInstance().getConfigDir().toString() + "/gnomicon/" + GNOMiconConfig.iconName + "\n" +
+									"StartupWMClass=" + GNOMiconConfig.windowName
+					);
+					LOGGER.info("Desktop file has been created");
+				} else {
+					LOGGER.warn("Your computer is probably using KDE");
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
